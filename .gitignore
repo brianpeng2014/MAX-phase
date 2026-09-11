@@ -1,0 +1,13 @@
+library/text/*
+!library/text/.gitkeep
+data/results/*
+!data/results/.gitkeep
+thesis/out/*
+!thesis/out/.gitkeep
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+Thumbs.db
+*.tmp
+~$*
