@@ -17,6 +17,7 @@
 ## 資料分層
 
 - library/manifest.csv 是文獻狀態的唯一來源；PDF 原檔放 library/pdf 且不改檔名。
+- 新增文獻及文獻整理成果一律放入 `library/` 對應位置；文獻 Excel 放 `library/`，不得放入 `output/`、`outputs/` 或 `out/`。
 - 儀器原始檔只放 data/raw，不得修改；分析程式、結果與圖分開存放。
 - 正式稿件與書目放 thesis，交付檔放 thesis/out。
 - 數值換算、量測命名與重要取捨記錄在 decisions。

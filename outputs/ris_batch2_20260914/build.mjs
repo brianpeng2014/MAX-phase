@@ -55,7 +55,7 @@ const sr=raw.map(x=>[x.id,x.file,get(x.r,'T1')||get(x.r,'TI'),get(x.r,'AU'),get(
 const ss=sheet('原始RIS',['來源ID','來源檔','英文題名','作者','年份原文','日期原文','RIS類型','期刊或書名','DOI','原文連結','關鍵字','英文摘要全文','資料註記'],sr,[12,55,70,48,12,18,10,42,55,65,50,120,35]);for(let i=0;i<sr.length;i++)ss.getRange(`A${i+2}:M${i+2}`).format.rowHeight=Math.min(409,Math.max(90,Math.ceil(sr[i][11].length/110)*15));
 if(duplicates.length)sheet('重複記錄',['重複ID','保留ID','來源檔','英文題名','DOI'],duplicates,[15,15,55,75,55]);
 if(new Set(all.map(x=>x.id)).size!==all.length||Object.values(counts).reduce((a,b)=>a+b,0)!==all.length)throw Error('Record reconciliation failed');
-wb.recalculate();await(await SpreadsheetFile.exportXlsx(wb)).save(`${out}/Ti3SiC2_文獻排序_第二批.xlsx`);
+wb.recalculate();await(await SpreadsheetFile.exportXlsx(wb)).save('D:/research/library/Ti3SiC2_文獻排序_第二批.xlsx');
 console.log(JSON.stringify({raw:raw.length,unique:all.length,duplicates:duplicates.length,abstracts:raw.filter(x=>get(x.r,'AB')).length,counts,priority:first.length}));
 for(const s of wb.worksheets.items){const p=await wb.render({sheetName:s.name,range:s.name==='閱讀指南'?'A1:B5':'A1:F3',scale:1,format:'png'});await fs.writeFile(`${out}/${s.name}.png`,new Uint8Array(await p.arrayBuffer()));}
 console.log((await wb.inspect({kind:'region',sheetId:'總排序',range:'A1:D4',maxChars:1000})).ndjson);

@@ -75,7 +75,7 @@ research/
 
 每個新增檔案或資料／文件變更的工作批次，以新分支及新的 GitHub PR 交付至 `main`；同批次修正更新原 PR，合併由使用者決定。
 
-本次文獻排序成品位於 [第一批 Excel](outputs/ris_20260914/Ti3SiC2_文獻閱讀排序.xlsx) 與 [第二批 Excel](outputs/ris_batch2_20260914/Ti3SiC2_文獻排序_第二批.xlsx)。`outputs/` 保存這些既有交付及生成腳本，本機預覽和依賴不納入 Git。
+文獻排序成品位於 [第一批 Excel](library/Ti3SiC2_文獻閱讀排序.xlsx) 與 [第二批 Excel](library/Ti3SiC2_文獻排序_第二批.xlsx)。未來新增文獻及文獻整理成果一律存入 `library/` 對應位置，不放入 `output/`、`outputs/` 或 `out/`。既有生成腳本與本機預覽暫留原位置，腳本的 Excel 輸出目的地已改為 `library/`。
 
 - 本頁描述目前結構與預計發展方向；連結暫時無法使用不代表應從架構中移除。
 - 未來新增目錄、文獻檢視表、試樣 Crosswalk、RAG、分析腳本、Word 輸出、同步、hooks 或代理技能時，優先沿用本頁的責任分層。
