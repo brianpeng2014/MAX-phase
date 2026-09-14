@@ -1,3 +1,5 @@
+library/pdf/*
+!library/pdf/.gitkeep
 library/text/*
 !library/text/.gitkeep
 data/results/*
@@ -11,3 +13,8 @@ __pycache__/
 Thumbs.db
 *.tmp
 ~$*
+
+# Local workbook runtime and verification previews
+node_modules/
+outputs/**/*.png
+outputs/**/*.inspect.ndjson
