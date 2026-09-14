@@ -22,10 +22,10 @@ function table(name,heads,rows,widths){const s=wb.worksheets.add(name);s.showGri
 function col(n){let s='';while(n){n--;s=String.fromCharCode(65+n%26)+s;n=Math.floor(n/26);}return s;}
 const intro=table('閱讀指南',['項目','說明'],[
 ['研究主題','Ti3SiC2 MAX phase／UHS 快速合成、熱性質與緻密化'],['來源','ScienceDirect_citations_1789374456484.ris；保留全部 100 筆原始書目。'],['判讀範圍','依据 RIS 題名、摘要及關鍵字作初篩；未取得 PDF，未驗證頁碼或實驗數值。'],['排序方法','P1 直接支援主要實驗；P2 補充反應或材料證據；P3 複材／替代方法；P4 應用較遠。組內按研究用途安排，不以年份或引用數決定品質。'],['閱讀順序','先相生成和快速製程，再熱傳／四點彎曲、餵料、粒徑與 EBSD。總排序為本次固定排序，修改內容後不會自動重排。'],['分頁使用','總排序含全部文獻；5 個主題頁按主要用途互斥歸類，原始 RIS 頁保留完整英文摘要。'],['UHS 缺口','本批題名未見 UHS 直接研究。SPS／FAST／快速熱壓是對照製程，不能當成 UHS 實證。'],['量測缺口','對 CT、AccuPyc、GeoPyc、DSC 和熔融指數的覆蓋需全文確認；摘要未提及不代表未使用。'],['日期提醒','RIS 如列出晚於 2026-09-14 的卷期日期，保留原文並標記待核對；不判定為錯誤或尚未上線。'],['使用界線','本檔是候選閱讀排序，並非入庫或全文納入決定；正式文獻狀態仍由 manifest.csv 維護。']],[24,115]);intro.getUsedRange().format.rowHeight=55;
-const heads=['排序','原始ID','優先級','主要主題','英文題名','年份','閱讀用途','實驗對應','比較限制','下一步'];
-const data=all.map((x,i)=>[i+1,`SD${String(x.id).padStart(3,'0')}`,x.p,x.g,x.t,Number(get(x.r,'PY'))||null,...x.c,'下載全文並核對方法、圖表與頁碼']);
-table('總排序',heads,data,[8,12,18,22,68,9,53,35,55,32]);
-for(const [name] of groups)table(name,heads,data.filter(r=>r[3]===name),[8,12,18,22,68,9,53,35,55,32]);
+const heads=['排序','原始ID','優先級','主要主題','英文題名','年份','閱讀用途','實驗對應','比較限制','下一步','DOI'];
+const data=all.map((x,i)=>[i+1,`SD${String(x.id).padStart(3,'0')}`,x.p,x.g,x.t,Number(get(x.r,'PY'))||null,...x.c,'下載全文並核對方法、圖表與頁碼',get(x.r,'DO')]);
+table('總排序',heads,data,[8,12,18,22,68,9,53,35,55,32,55]);
+for(const [name] of groups)table(name,heads,data.filter(r=>r[3]===name),[8,12,18,22,68,9,53,35,55,32,55]);
 const sourceRows=records.map((r,i)=>[ `SD${String(i+1).padStart(3,'0')}`,get(r,'T1')||get(r,'TI'),get(r,'AU'),get(r,'PY'),get(r,'DA'),get(r,'TY'),get(r,'JO')||get(r,'T2'),get(r,'DO'),get(r,'UR'),get(r,'KW'),get(r,'AB'),get(r,'DA').replaceAll('/','').slice(0,8)>'20260914'?'卷期日期晚於整理日，待核對':'', 'RIS 摘要初篩；未讀全文']);
 table('原始RIS',['原始ID','英文題名','作者','出版年原文','日期原文','RIS類型','期刊或書名','DOI','原文連結','關鍵字','英文摘要全文','日期備註','證據階段'],sourceRows,[12,68,50,12,18,10,42,55,65,55,120,35,32]);
 // Long abstracts remain fully visible in Excel at practical column width.
