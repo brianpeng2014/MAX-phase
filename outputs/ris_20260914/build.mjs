@@ -33,5 +33,5 @@ const src=wb.worksheets.getItem('原始RIS');for(let i=0;i<sourceRows.length;i++
 wb.recalculate();
 console.log(JSON.stringify({records:records.length,abstracts:records.filter(r=>get(r,'AB')).length,uniqueDOI:new Set(records.map(r=>get(r,'DO'))).size,counts:groups.map(([g])=>[g,all.filter(x=>x.g===g).length]),top:all.slice(0,10).map(x=>[x.id,x.t])}));
 console.log((await wb.inspect({kind:'region',sheetId:'總排序',range:'A1:D5',maxChars:1500})).ndjson);
-await (await SpreadsheetFile.exportXlsx(wb)).save('D:/research/library/Ti3SiC2_文獻閱讀排序.xlsx');
+await (await SpreadsheetFile.exportXlsx(wb)).save('D:/research/library/notes/Ti3SiC2_文獻閱讀排序.xlsx');
 for(const s of wb.worksheets.items){const blob=await wb.render({sheetName:s.name,range:s.name==='閱讀指南'?'A1:B6':'A1:F4',scale:1,format:'png'});await fs.writeFile(`${out}/${s.name}.png`,new Uint8Array(await blob.arrayBuffer()));}
